@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from concurrent.futures import process
 from pathlib import Path
 
+from my_setting import secret_key
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = secret_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -32,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,7 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-
+"""
+admin - 관리용 사이트
+auth - 인증 시스템
+contenttypes - 컨텐츠 타입을 위한 프레임워크
+sessions - 세션 프레임 워크
+messages - 메세징 프레임 워크
+staticfiles - 정적 파일을 관리하는 프레임 워크
+"""
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -80,7 +90,16 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+"""
+ENGINE - 데이터베이스
+NAME - 데이터베이스의 이름. SQLite를 사용하는 경우 데이터베이스는 컴퓨터의 파일이다.
+이 경우 :setting:`NAME`은 파일이름을 포함한 해당 파일의 전체 절대 경로여야 한다.
+기본값인 ``BASE_DIR / ‘db.sqlite3’``은 파일을 프로젝트 디렉토리에 저장한다.
 
+만약 SQLite를 데이터베이스로 사용하지 않는 경우에는 USER, PASSWORD, HOST 같은 추가 설정이 필요하다.
+default 항목의 값을 변경하면 다른 데이터베이스를 사용 할 수 있다.
+시간대에 맞춰 TIME_ZONE을 설정(default로 TIME_ZONE = 'UTC'로 작성되어 있다) 할 수도 있다.
+"""
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -104,13 +123,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-KR' #한글ko-KR 영어en-us
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul' #표준시UTC 한국Asia/Seoul
 
-USE_I18N = True
+USE_I18N = True #Django의 번역시스템 활성화 여부
 
-USE_TZ = True
+USE_TZ = False #날짜 시간이 기본적으로 시간대를 인식할지 여부 False로 설정해야 TIME_ZONE 설정 변경이 적용된다
 
 
 # Static files (CSS, JavaScript, Images)
