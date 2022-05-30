@@ -62,10 +62,10 @@ Django는 모델에 대한 관리용 인터페이스를 자동으로 생성한�
 python manage.py createsuperuser
 ```
 명령어를 입력하고 세부 설정한다.
-* Username: admin
-* Email address: 'admin@example.com'
-* Password: **********
-  * Password (again): *********
+* Username: 
+* Email address: 
+* Password: 
+  * Password (again): 
 
 비밀번호가 8자리 이하, 너무 평범하거나, 숫자만 있으면 경고문이 나온다.
    
