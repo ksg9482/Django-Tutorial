@@ -63,7 +63,7 @@ python manage.py createsuperuser
 ```
 명령어를 입력하고 세부 설정한다.
 * Username: admin
-* Email address: admin@example.com
+* Email address: 'admin@example.com'
 * Password: **********
   * Password (again): *********
 
