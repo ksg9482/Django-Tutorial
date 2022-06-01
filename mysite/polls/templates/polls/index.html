@@ -1,0 +1,17 @@
+{% if latest_question_list %}
+    <ul>
+        {% for question in latest_question_list %}
+        <li>
+            <a href="/polls/{{ question.id }}/">
+                {{ question.question_text }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>
+        No polls are available.
+    </p>
+{% endif %}
+<!-- 튜토리얼의 편의성을 위해 불완전한 HTML을 사용한다. -->
+<!-- 실제 프로젝트에서는 완성된 HTML을 사용해야 한다. -->
