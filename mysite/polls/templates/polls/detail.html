@@ -1,13 +1,17 @@
-<h1>
-    {{ question.question_text }}
-</h1>
-<ul>
-{% for choice in question.choice_set.all %}
-    <li>
-        {{ choice.choice_text }}
-    </li>
-{% endfor %}
-</ul>
+<form action="{% url 'polls:vote' question.id %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend>
+            <h1>{{ question.question_text }}</h1>
+        </legend>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        {% for choice in question.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+        {% endfor %}
+    </fieldset>
+    <input type="submit" value="Vote">
+</form>
 
 <!-- 템플릿 시스템은 변수의 속성에 접근하기 위해 점-탐색(dot-lookup) 문법을 사용한다.-->
 <!-- {{ question.question_text }} 구문을 예로 들면 Django는 question 객체에 대해 사전형으로 탐색한다.-->
